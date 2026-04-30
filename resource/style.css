@@ -24,10 +24,9 @@ body {
                 radial-gradient(at 100% 0%, #16222a 0%, transparent 50%),
                 radial-gradient(at 100% 100%, #4ca1af 0%, transparent 50%),
                 radial-gradient(at 0% 100%, #2c3e50 0%, transparent 50%);
-    background-color: #1a2a3a; /* Base color */
+    background-color: #1a2a3a;
 }
 
-/* Efek Grainy/Noise */
 .bg-noise {
     position: fixed;
     top: 0;
@@ -61,7 +60,7 @@ body {
 .hero-subtitle {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px; /* Angka ini yang mengangkat tulisan ke atas */
+    margin-bottom: 40px;
     font-weight: 500;
 }
 
@@ -101,11 +100,22 @@ h2 {
 }
 
 .preview-box {
-    width: 70%;
-    height: 400px;
+    width: fit-content;
+    max-width: 1200px;
+    height: 600px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.preview-box img {
+    width: 100%;        
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    object-position: center 20%;
 }
 
 .content-section {
@@ -132,7 +142,7 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 :root {
-    --bg-dark: #121d26; /* Sesuaikan dengan warna gambar kamu */
+    --bg-dark: #121d26; 
 }
 
 body {
@@ -150,12 +160,12 @@ body {
 
 .nav-capsule {
     display: flex;
-    align-items: center; /* Menjaga logo & teks sejajar di tengah secara vertikal */
-    padding: 6px 12px 6px 8px; /* Padding kiri lebih kecil untuk merapatkan logo */
-    background: rgba(255, 255, 255, 0.08); /* Transparansi halus */
-    backdrop-filter: blur(20px); /* Efek kaca */
+    align-items: center;
+    padding: 6px 12px 6px 8px; 
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Border tipis */
+    border: 1px solid rgba(255, 255, 255, 0.15); 
     border-radius: 50px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
@@ -200,7 +210,7 @@ body {
 .footer-minimal {
     width: 100%;
     padding: 60px 10% 30px 10%;
-    background: transparent; /* Membuat footer transparan */
+    background: transparent; 
     color: white;
     position: relative;
     z-index: 10;
@@ -227,7 +237,7 @@ body {
 .social-links a {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Lingkaran tipis */
+    border: 1px solid rgba(255, 255, 255, 0.5); 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -243,14 +253,14 @@ body {
     color: black;
 }
 
-/* Garis Pemisah */
+
 .footer-divider {
     border: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin: 20px 0;
 }
 
-/* Bottom Section */
+
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -286,4 +296,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .nav-floating {
+        top: auto;
+        bottom: 20px; 
+        right: 50%;
+        transform: translateX(50%); 
+        width: 90%; 
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-capsule {
+        width: 100%;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .nav-link {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+
+    .nav-logo {
+        height: 25px;
+        width: 25px;
+    }
 }
