@@ -100,11 +100,11 @@
     }
 
     .preview-box {
-        width: fit-content;
+        width: 50%;
         max-width: 1200px;
-        height: 600px;
+        height: auto;
         background: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
+        border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         margin: 0 auto;
@@ -112,7 +112,7 @@
 
     .preview-box img {
         width: 100%;        
-        height: 100%;
+        height: auto;
         object-fit: cover;
         display: block;
         object-position: center 20%;
@@ -324,4 +324,9 @@
             height: 25px;
             width: 25px;
         }
+            .preview-box {
+                width: 85%;
+                max-width: 1200px;
+                border-radius: 20px;
+            }
     }
