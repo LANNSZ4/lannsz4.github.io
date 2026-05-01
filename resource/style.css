@@ -132,14 +132,23 @@
     }
 
     .card {
-        background: rgba(255, 255, 255, 0.1);
-        height: 200px;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 70%px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
     }
     :root {
         --bg-dark: #121d26; 
