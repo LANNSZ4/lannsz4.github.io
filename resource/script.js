@@ -27,3 +27,42 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => {
     observer.observe(section);
 });
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.card');
+filterCards('hsr');
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        button.classList.add('active');
+        
+        const filterValue = button.getAttribute('data-filter');
+        
+        filterCards(filterValue);
+    });
+});
+
+function filterCards(filter) {
+    cards.forEach(card => {
+        if (card.getAttribute('data-category') === filter) {
+            
+            card.classList.remove('d-none'); 
+            
+            setTimeout(() => {
+                card.classList.remove('hide-anim');
+            }, 20); 
+
+        } else {
+                card.classList.add('hide-anim'); 
+            
+            
+            setTimeout(() => {
+    if (card.classList.contains('hiding')) {
+        card.classList.remove('active');
+        card.classList.remove('hiding');
+    }
+}, 400); // Angka 400 ini harus sama dengan 0.4s di CSS
+        }
+    });
+}
