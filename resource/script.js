@@ -3,8 +3,8 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 const observerOptions = {
     root: null,
-    threshold: 0.1, // Cukup 20% bagian muncul, langsung ganti warna
-    rootMargin: "-10% 0px -70% 0px" // Membantu deteksi saat scroll dari atas
+    threshold: 0.1, 
+    rootMargin: "-10% 0px -70% 0px" 
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -62,7 +62,65 @@ function filterCards(filter) {
         card.classList.remove('active');
         card.classList.remove('hiding');
     }
-}, 400); // Angka 400 ini harus sama dengan 0.4s di CSS
+}, 400); 
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible'); 
+            }
+        });
+    });
+
+    const hiddenElements = document.querySelectorAll('.reveal');
+    hiddenElements.forEach((el) => observer.observe(el));
+
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterCards('hsr');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            button.classList.add('active');
+            const filterValue = button.getAttribute('data-filter');
+            filterCards(filterValue);
+        });
+    });
+
+    function filterCards(targetFilter) {
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+
+            if (cardCategory === targetFilter) {
+                card.classList.remove('hiding'); 
+                card.classList.add('active'); 
+                
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 50); 
+            } else {
+                if (card.classList.contains('visible')) {
+                    card.classList.remove('visible');
+                    card.classList.add('hiding'); 
+
+                    setTimeout(() => {
+                        if (!card.classList.contains('visible')) {
+                            card.classList.remove('active');
+                            card.classList.remove('hiding'); 
+                        }
+                    }, 400); 
+                }
+            }
+        });
+    }
+
+});
