@@ -1,19 +1,56 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add('locked');
+    
+    const preloader = document.getElementById('preloader');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    let progress = 0;
+    
+    const loadingInterval = setInterval(() => {
+        progress += Math.floor(Math.random() * 15) + 1; 
+        
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(loadingInterval);
+            hilangkanPreloader();
+        }
+        
+        progressBar.style.width = progress + '%';
+        progressText.innerText = progress + '%';
+        
+    }, 120);
+
+    function hilangkanPreloader() {
+        setTimeout(() => {
+            preloader.classList.add('preloader-hide');
+            document.body.classList.remove('locked');
+        }, 500);
+    }
+
+    window.addEventListener('load', () => {
+        progress = 100;
+        progressBar.style.width = '100%';
+        progressText.innerText = '100%';
+        clearInterval(loadingInterval);
+        hilangkanPreloader();
+    });
+});
+
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
 
 const observerOptions = {
     root: null,
-    threshold: 0.1, 
-    rootMargin: "-10% 0px -70% 0px" 
+    threshold: 0.05, 
+    rootMargin: "-10% 0px -70% 0px"
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Hapus semua class active
             navLinks.forEach(link => link.classList.remove('active'));
             
-            // Ambil ID section yang sedang aktif
             const id = entry.target.getAttribute('id');
             const targetLink = document.querySelector(`.nav-link[href="#${id}"]`);
             
@@ -69,6 +106,7 @@ function filterCards(filter) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -81,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     hiddenElements.forEach((el) => observer.observe(el));
 
 
+   
     const filterButtons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
 
@@ -91,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             
             button.classList.add('active');
+            
             const filterValue = button.getAttribute('data-filter');
             filterCards(filterValue);
         });
